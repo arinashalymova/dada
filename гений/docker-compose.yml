@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+
+  service-db:
+    container_name: VSK
+    image: postgres:14.7-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_DB=VSK
+    ports:
+      - "5438:5432"
+    #    healthcheck:
+    #      test: [ "CMD", "pg_isready", "-U", "postgres", "-d", "VSK" ]
+    #      interval: 5s
+    #      retries: 5
+    #    volumes:
+    #      - db-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes: {
+  /var/lib/postgresql/data: {}
+}
+
